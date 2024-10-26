@@ -31,6 +31,9 @@ jobs:
       run: |
         uv sync
 
+    - name: Setup CML
+      uses: iterative/setup-cml@v2
+
     - name: Run Hyperparameter Optimization
       run: |
         python src/train.py hparams_search=optuna --multirun +trainer.log_every_n_steps=5
