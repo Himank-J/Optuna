@@ -29,6 +29,7 @@ jobs:
       env:
         UV_EXTRA_INDEX_URL: https://download.pytorch.org/whl/cpu
       run: |
+        uv pip install hydra-core pytorch-lightning torchvision matplotlib seaborn pandas
         uv sync
 
     - name: Setup CML
