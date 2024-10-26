@@ -1,0 +1,18 @@
+_target_: src.models.dogbreed_classifier.DogBreedClassifier
+
+# Model parameters
+base_model: convnext_nano
+num_classes: 10
+pretrained: true
+
+# Optimizer parameters
+lr: 1e-3
+weight_decay: 1e-5
+
+# Scheduler parameters
+factor: 0.1
+patience: 3
+min_lr: 1e-6
+
+# Additional ConvNeXt parameters
+drop_rate: 0.1

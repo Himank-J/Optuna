@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+src/eval.py
+src/infer.py
+src/train.py
+src/datamodules/dogbreed_datamodule.py
+src/lightning_template_hydra.egg-info/PKG-INFO
+src/lightning_template_hydra.egg-info/SOURCES.txt
+src/lightning_template_hydra.egg-info/dependency_links.txt
+src/lightning_template_hydra.egg-info/requires.txt
+src/lightning_template_hydra.egg-info/top_level.txt
+src/models/dogbreed_classifier.py
+src/utils/logging_utils.py
+tests/test_datamodule.py
+tests/test_model.py
+tests/test_train.py

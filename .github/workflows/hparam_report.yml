@@ -1,0 +1,62 @@
+name: Hyperparameter Optimization and Report
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  hyperparameter-optimization-and-report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v2
+
+    - name: Set up Python 3.12
+      run: uv python install 3.12
+
+    - name: Install dependencies
+      env:
+        UV_EXTRA_INDEX_URL: https://download.pytorch.org/whl/cpu
+      run: |
+        uv sync
+
+    - name: Run Hyperparameter Optimization
+      run: |
+        python src/train.py hparams_search=optuna --multirun +trainer.log_every_n_steps=5
+
+    - name: Generate report
+      run: |
+        python scripts/generate_hparam_report.py
+
+    - name: Create comment with report
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('hparam_report.md', 'utf8');
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.name,
+            body: report
+          });
+
+    - name: Upload plots
+      uses: actions/upload-artifact@v3
+      with:
+        name: hparam-plots
+        path: |
+          val_loss_plot.png
+          val_acc_plot.png
