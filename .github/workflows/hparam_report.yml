@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Hyperparameter Optimization
         run: |
-          uv run python src/train.py hparams_search=optuna --multirun +trainer.log_every_n_steps=5
+          uv run python src/train.py hparams_search=optuna --multirun
 
       - name: Generate report
         run: |
