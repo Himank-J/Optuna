@@ -41,24 +41,16 @@ jobs:
         run: |
           uv run python scripts/generate_hparam_report.py
 
-      - name: Create comment with report
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const fs = require('fs');
-            const report = fs.readFileSync('hparam_report.md', 'utf8');
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.name,
-              body: report
-            });
+      - name: Create CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cml comment create hparam_report.md
 
       - name: Upload plots
         uses: actions/upload-artifact@v3
         with:
           name: hparam-plots
           path: |
-            val_loss_plot.png
-            val_acc_plot.png
+            plots/val_loss_plot.png
+            plots/val_acc_plot.png
