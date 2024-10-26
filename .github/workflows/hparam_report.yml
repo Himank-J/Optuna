@@ -19,18 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v2
-
-    - name: Set up Python 3.10
-      run: uv python install 3.10
+    - name: Set up Python 3.12
+      run:  python install 3.12
 
     - name: Install dependencies
       env:
-        UV_EXTRA_INDEX_URL: https://download.pytorch.org/whl/cpu
+        EXTRA_INDEX_URL: https://download.pytorch.org/whl/cpu
       run: |
-        uv pip install hydra-core pytorch-lightning torchvision matplotlib seaborn pandas
-        uv sync
+        run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
     - name: Setup CML
       uses: iterative/setup-cml@v2
