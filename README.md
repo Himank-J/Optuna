@@ -11,6 +11,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Architecture](#architecture)
+- [Output](#output)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
@@ -57,6 +58,21 @@ The repository is structured to promote modularity and scalability. Below is an 
 - **`Dockerfile`**: Docker configuration for containerizing the application.
 - **`.github/workflows/hparam_report.yml`**: GitHub Actions workflow for automated training and reporting.
 - **`README.md`**: This documentation file.
+
+## Output
+
+The hparam_report generates below report in github comments
+
+**Hyperparameters Benchmarking across Different runs**
+<img width="882" alt="image" src="https://github.com/user-attachments/assets/614bc16b-d556-44b1-b32d-4b136c1e3eb9">
+
+**Best Hyperparameters**
+<img width="557" alt="image" src="https://github.com/user-attachments/assets/28b82b9e-cc64-4514-a0d7-3311c8f1c697">
+
+**Plots**
+<img width="817" alt="image" src="https://github.com/user-attachments/assets/c742f120-ae72-4a2e-a0b6-bf69410166a5">
+
+<img width="783" alt="image" src="https://github.com/user-attachments/assets/565d5a23-b0d1-470b-bd1e-19d07d7dba3a">
 
 ## Installation
 
